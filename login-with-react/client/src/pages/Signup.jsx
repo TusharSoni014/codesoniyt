@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { handleError } from "../utils/handleError";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+axios.defaults.withCredentials = true;
 
 const defaultValues = {
   email: "",
@@ -8,11 +13,21 @@ const defaultValues = {
 
 export default function Signup() {
   const [signupInput, setSignupInput] = useState(defaultValues);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    } catch (error) {}
+      await axios.post("http://localhost:4000/user/signup", {
+        email: signupInput.email,
+        password: signupInput.password,
+        username: signupInput.username,
+      });
+      navigate("/login");
+      toast.success("User Created Successfully!");
+    } catch (error) {
+      handleError(error);
+    }
   };
 
   //handle on change event function
@@ -21,7 +36,6 @@ export default function Signup() {
       ...prevVal,
       [e.target.name]: e.target.value,
     }));
-    console.log(signupInput);
   };
 
   return (

@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { handleError } from "../utils/handleError";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+axios.defaults.withCredentials = true;
 
 const defaultValues = {
   email: "",
@@ -7,12 +12,21 @@ const defaultValues = {
 
 export default function Login() {
   const [loginInput, setLoginInput] = useState(defaultValues);
+  const navigate = useNavigate();
 
   //form submit function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    } catch (error) {}
+      await axios.post("http://localhost:4000/user/login", {
+        email: loginInput.email,
+        password: loginInput.password,
+      });
+      navigate("/");
+      toast.success("Logged in Successfully!");
+    } catch (error) {
+      handleError(error);
+    }
   };
 
   //handle on change event function
@@ -21,7 +35,6 @@ export default function Login() {
       ...prevVal,
       [e.target.name]: e.target.value,
     }));
-    console.log(loginInput);
   };
 
   return (
