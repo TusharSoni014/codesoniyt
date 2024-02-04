@@ -20,14 +20,53 @@ const initialState: CompilerSliceStateType = {
         <input type="text" id="taskInput" placeholder="Enter your task">
         <button onclick="addTask()">Add Task</button>
         <ul id="taskList"></ul>
-      <h1>hello</h1>
     </div>
   <script src="script.js"></script>
   </body>
 </html>
     `,
-    css: "this is css code",
-    javascript: "this is javascript code",
+    css: `
+  body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50vh;
+      margin: 0;
+    border:1px solid blue;
+  }
+  
+  .container {
+      text-align: center;
+  }
+  
+  input {
+      padding: 8px;
+      margin-right: 8px;
+  }
+  
+  button {
+      padding: 8px;
+  }  
+    `,
+    javascript: `
+    function addTask() {
+  
+      var taskInput = document.getElementById('taskInput');
+      var taskList = document.getElementById('taskList');
+      if (taskInput.value !== '') {
+          var taskItem = document.createElement('li');
+          taskItem.textContent = taskInput.value;
+          taskList.appendChild(taskItem);
+          taskInput.value = '';
+  
+          taskItem.addEventListener('click', function () {
+              taskList.removeChild(taskItem);
+          });
+      }
+  }
+  
+    `,
   },
   currentLanguage: "html",
 };
