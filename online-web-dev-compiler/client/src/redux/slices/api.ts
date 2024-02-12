@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { CompilerSliceStateType } from "./compilerSlice";
+import { url } from "inspector";
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
@@ -29,18 +30,26 @@ export const api = createApi({
         body: body,
       }),
     }),
-    login: builder.mutation<userInfoType, { userId: string; password: string }>(
-      {
-        query: (body) => ({
-          url: "/user/login",
-          method: "POST",
-          body: body,
-          credentials: "include",
-        }),
-      }
-    ),
+    login: builder.mutation<userInfoType, loginCredentialsType>({
+      query: (body) => ({
+        url: "/user/login",
+        method: "POST",
+        body: body,
+        credentials: "include",
+      }),
+    }),
+    logout: builder.mutation<void, void>({
+      query: () => ({
+        url: "/user/logout",
+        method: "POST",
+      }),
+    }),
   }),
 });
 
-export const { useSaveCodeMutation, useLoadCodeMutation, useLoginMutation } =
-  api;
+export const {
+  useSaveCodeMutation,
+  useLoadCodeMutation,
+  useLoginMutation,
+  useLogoutMutation,
+} = api;
