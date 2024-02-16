@@ -1,5 +1,7 @@
 /// <reference types="vite/client" />
 
+import { CompilerSliceStateType } from "./redux/slices/compilerSlice";
+
 //users types
 interface userInfoType {
   username: string;
@@ -11,4 +13,15 @@ interface userInfoType {
 interface loginCredentialsType {
   userId: string;
   password: string;
+}
+interface signupCredentialsType {
+  username: string;
+  email: string;
+  password: string;
+}
+
+interface codeType {
+  fullCode?: CompilerSliceStateType["fullCode"];
+  title: string;
+  _id?: string;
 }
