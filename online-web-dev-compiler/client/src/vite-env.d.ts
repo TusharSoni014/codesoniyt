@@ -14,6 +14,7 @@ interface loginCredentialsType {
   userId: string;
   password: string;
 }
+
 interface signupCredentialsType {
   username: string;
   email: string;

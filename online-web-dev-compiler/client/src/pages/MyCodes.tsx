@@ -1,5 +1,6 @@
 import CodeItem from "@/components/CodeItem";
 import { useGetMyCodesQuery } from "@/redux/slices/api";
+import { Link } from "react-router-dom";
 
 export default function MyCodes() {
   const { data: myCodes } = useGetMyCodesQuery();
@@ -13,7 +14,7 @@ export default function MyCodes() {
   ) : (
     <>
       <p className="text-center font-mono text-slate-600 p-3">
-        You don't have any saved codes.
+        You don't have any saved codes. <Link to="/compiler">Create One</Link>
       </p>
     </>
   );
