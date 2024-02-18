@@ -1,14 +1,14 @@
 import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import Loader from "./components/Loader/Loader";
-import AllCodes from "./pages/AllCodes";
-import MyCodes from "./pages/MyCodes";
 
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
 const Signup = lazy(() => import("./pages/Signup"));
 const Compiler = lazy(() => import("./pages/Compiler"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const AllCodes = lazy(() => import("./pages/AllCodes"));
+const MyCodes = lazy(() => import("./pages/MyCodes"));
 
 export default function AllRoutes() {
   return (
