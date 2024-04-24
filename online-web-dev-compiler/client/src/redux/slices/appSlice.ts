@@ -8,11 +8,13 @@ export interface appSliceState {
     savedCodes?: string[];
   };
   isLoggedIn: boolean;
+  currentWidth: number;
 }
 
 const initialState: appSliceState = {
   currentUser: {},
   isLoggedIn: false,
+  currentWidth: window.innerWidth,
 };
 
 const appSlice = createSlice({
@@ -28,8 +30,11 @@ const appSlice = createSlice({
     updateIsLoggedIn: (state, action: PayloadAction<boolean>) => {
       state.isLoggedIn = action.payload;
     },
+    setCurrentWidth: (state, action: PayloadAction<number>) => {
+      state.currentWidth = action.payload;
+    },
   },
 });
 
 export default appSlice.reducer;
-export const { updateCurrentUser, updateIsLoggedIn } = appSlice.actions;
+export const { updateCurrentUser, updateIsLoggedIn,setCurrentWidth } = appSlice.actions;

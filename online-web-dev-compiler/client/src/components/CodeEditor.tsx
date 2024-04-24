@@ -24,7 +24,7 @@ export default function CodeEditor() {
     <CodeMirror
       value={fullCode[currentLanguage]}
       height="calc(100vh - 60px - 50px)"
-      className="code-editor"
+      className="code-editor [&>.cm-editor]:!text-[10px] md:[&>.cm-editor]:!text-xs"
       extensions={[loadLanguage(currentLanguage)!]}
       onChange={onChange}
       theme={draculaInit({
