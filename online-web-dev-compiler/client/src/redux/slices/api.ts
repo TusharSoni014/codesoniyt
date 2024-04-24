@@ -9,7 +9,7 @@ import {
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000",
+    baseUrl: import.meta.env.SERVER_URL,
     credentials: "include",
   }),
   tagTypes: ["myCodes", "allCodes"],
@@ -67,7 +67,7 @@ export const api = createApi({
         url: `/compiler/delete/${_id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["myCodes","allCodes"],
+      invalidatesTags: ["myCodes", "allCodes"],
     }),
     editCode: builder.mutation<
       void,
